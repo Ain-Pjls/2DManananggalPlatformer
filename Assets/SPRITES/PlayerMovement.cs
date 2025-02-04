@@ -6,7 +6,13 @@ using UnityEngine;
 public class PlayerMovement : MonoBehaviour
 {
     public Rigidbody2D charac1RB; // Placeholder for your character object
-    public Animator animator; // Placeholder for the character's animations
+    //public Animator animator; // Placeholder for the character's animations
+
+    public Rigidbody2D charac2RB; // Placeholder for your character object
+    //public Animator animator; 
+
+    private Rigidbody2D currentCharac; // Placeholder for the active character
+
     public Transform groundCheck; // Collider Checker
     public LayerMask groundLayer; // To specify what object touched/collide an object
 
@@ -18,10 +24,11 @@ public class PlayerMovement : MonoBehaviour
 
     public bool isWalking; // Character's placeholder to determine if animation should be executed to match the actions
     private bool isFacingRight = true; // For flipping the character based on which direction it's moving
+    private bool isChangeCharacter = true; // For switching through characters
 
     void Start()
     {
-        charac1RB = GetComponent<Rigidbody2D>();
+        currentCharac = charac1RB;
         //animator = GetComponent<Animator>();
     }
 
@@ -29,6 +36,7 @@ public class PlayerMovement : MonoBehaviour
     {
         CharacterMovement();
         //HandleAnimation();
+        SwitchChecker();
         Flip();
     }
 
@@ -36,12 +44,12 @@ public class PlayerMovement : MonoBehaviour
     {
         horizontal = Input.GetAxisRaw("Horizontal"); // Get's the key inputs from the Input Manager (Alternative method for "GetKey" functions)
 
-        if (Input.GetButtonDown("Jump") && IsGrounded()) 
+        if (Input.GetButtonDown("Jump") && IsGrounded()) // Determines if collision and jump was true to proceed jumping ONLY WHEN THE CHARACTER IS AT GROUND
         {
-            charac1RB.velocity = new Vector2(charac1RB.velocity.x, jumpingPower); // JUMP
+            currentCharac.velocity = new Vector2(currentCharac.velocity.x, jumpingPower); // JUMP
         }
 
-        isWalking = horizontal != 0 ? true : false; // Shortest If-Else Statement (Shortcut Method)
+        //isWalking = horizontal != 0 ? true : false; // Shortest If-Else Statement (Shortcut Method)
     }
 
     //void HandleAnimation()
@@ -58,27 +66,52 @@ public class PlayerMovement : MonoBehaviour
 
             // Responsible for Flipping/Mirroring of the sprite
             Vector2 localScale = transform.localScale; // Creates a modifieable copy of transform from the inspector
-            localScale.x *= -1f; // Updates the JUST the value
-            transform.localScale = localScale; // Applying the effect to the gameobject
+            localScale.x *= -1f; // Updates the copy
+            transform.localScale = localScale; // Applying the effect to the gameobject's transformScale
         }
     }
 
-     void FixedUpdate() // Smoother Movement for Left and Right (in order to evenly distribute the milliseconds per frame)
+    void SwitchChecker() // Function for calling the "CharacterSwitch" function using a key in the keyboard
     {
-        charac1RB.velocity = new Vector2(horizontal * speed, charac1RB.velocity.y); 
+        if (Input.GetKeyDown(KeyCode.Alpha1)) // Keycode for "Number 1" key on the top of your keyboard, below the F1 and so on keys.
+        {
+            CharacterSwitch(); 
+        }
+    } 
+
+    private void CharacterSwitch() // Function for passing the controls from one character to another (this disables the controller for the another character)
+    {
+        isChangeCharacter = !isChangeCharacter; // Switching this variable value from true or false whenever "CharacterSwitch" function is called
+
+        if (isChangeCharacter) // Determines hwere to pass on the control
+        {
+            currentCharac = charac1RB; // Passing it to character 1
+        } 
+        else
+        {
+            currentCharac = charac2RB; // Passing it to character 2
+        }
+    }
+
+    void FixedUpdate() // Smoother Movement for Left and Right (in order to evenly distribute the milliseconds per frame)
+    {
+        if (currentCharac != null) // To prevent Unity from spamming the unreferenced error of something you don't need to use
+        {
+            currentCharac.velocity = new Vector2(horizontal * speed, currentCharac.velocity.y); 
+        }
     }
         
-    private bool IsGrounded()
+    private bool IsGrounded() // Determines if there's a collision between the Character and the Ground
     {
         return Physics2D.OverlapCircle(groundCheck.position, 0.5f, groundLayer); // Returns true or false
     }
 
-    void OnDrawGizmosSelected() // Adds highlight markings to whatever unseen system range detector
+    void OnDrawGizmosSelected() // Adds highlight markings to whatever unseen system range detector (THIS TOOL IS JUST FOR DEBUGGING)
     {
-        if (groundCheck != null)
+        if (groundCheck != null) // To prevent Unity from spamming the unreferenced error of something you don't need to use
         {
-            Gizmos.color = Color.red;
-            Gizmos.DrawWireSphere(groundCheck.position, 0.5f);
+            Gizmos.color = Color.red; // Color of the Wireframe
+            Gizmos.DrawWireSphere(groundCheck.position, 0.5f); // Mimics the groundCheck.position in wireframes in order for you to see how large the detection to GROUND is
         }
         else
         {
