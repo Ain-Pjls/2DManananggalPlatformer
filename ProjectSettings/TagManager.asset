@@ -41,3 +41,9 @@ TagManager:
   - name: Default
     uniqueID: 0
     locked: 0
+  - name: Platforms
+    uniqueID: 1601415561
+    locked: 0
+  - name: Obstacles
+    uniqueID: 2599138829
+    locked: 0

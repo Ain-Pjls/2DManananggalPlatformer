@@ -1,34 +1,37 @@
-using System;
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+using System; // Grants access to classes and functions that uses your system
+using System.Collections; // Grants access to collections strcutures like ArrayList
+using System.Collections.Generic; // Grants access to collections and data structures like List and Dictionary
+using UnityEngine; // Grants access to Unity's core features
 
-public class PlayerMovement : MonoBehaviour
+public class AllInOneController : MonoBehaviour
 {
-    public Rigidbody2D charac1RB; // Placeholder for your character object
-    //public Animator animator; // Placeholder for the character's animations
-
-    public Rigidbody2D charac2RB; // Placeholder for your character object
-    //public Animator animator; 
-
+    [Header("Player's Rigidbody")]
+    public Rigidbody2D rigidbody1; // Placeholder for your character object
+    //public Animator animator1; // Placeholder for the character's animations
+    public Rigidbody2D rigidbody2; // Placeholder for your character object
+    //public Animator animator2; 
     private Rigidbody2D currentCharac; // Placeholder for the active character
 
+    [Header("Environment & Interaction")]
     public Transform groundCheck; // Collider Checker
     public LayerMask groundLayer; // To specify what object touched/collide an object
 
+    [Header("Atrributes")]
     public float speed; // For how fast the player could move
     public float jumpingPower; // For how high the player could jump
 
+    [Header("Positions")]
     public float horizontal; // Character's placeholder for left and right displacement 
     public float vertical; // Character's placeholder for up and down displacement 
 
+    [Header("Booleans")]
     public bool isWalking; // Character's placeholder to determine if animation should be executed to match the actions
     private bool isFacingRight = true; // For flipping the character based on which direction it's moving
     private bool isChangeCharacter = true; // For switching through characters
 
     void Start()
     {
-        currentCharac = charac1RB;
+        currentCharac = rigidbody1;
         //animator = GetComponent<Animator>();
     }
 
@@ -85,11 +88,11 @@ public class PlayerMovement : MonoBehaviour
 
         if (isChangeCharacter) // Determines hwere to pass on the control
         {
-            currentCharac = charac1RB; // Passing it to character 1
+            currentCharac = rigidbody1; // Passing it to character 1
         } 
         else
         {
-            currentCharac = charac2RB; // Passing it to character 2
+            currentCharac = rigidbody2; // Passing it to character 2
         }
     }
 
