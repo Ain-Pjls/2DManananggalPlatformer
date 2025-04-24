@@ -2,12 +2,12 @@ using System.Collections; // Grants access to collections and data structures li
 using System.Collections.Generic; // Grants access to generic collections like List<T>, Dictionary<TKey, TValue>, etc.
 using UnityEngine; // Grants access to Unity's core classes and functions, such as MonoBehaviour, GameObject, etc.
 
-public class MovingPlatform : MonoBehaviour
+public class ActivatingPlatform : MonoBehaviour
 {
     // ------------------------- VARIABLES -------------------------
     [Header("REFERENCES")]
     public GameObject characterParent; // The parent object of the character that will interact with the platform
-    public Transform []pointPaths; // The two points between which the platform will move
+    public Transform[] pointPaths; // The two points between which the platform will move
     public Vector3 nextPosition; // The next position goal of the platform after reaching pointA or pointB
 
     [Header("ATTRIBUTES")]
@@ -16,6 +16,7 @@ public class MovingPlatform : MonoBehaviour
 
     [Header("REGULATOR")]
     public int pointCounter = 0; // The counter that regulates the path of the platform between path points
+    public bool isActivated = false; // A boolean to check if the platform is activated or not
 
     // ------------------------- METHODS -------------------------
     private void Start() // called once before the first frame update
@@ -25,7 +26,35 @@ public class MovingPlatform : MonoBehaviour
 
     private void FixedUpdate() // called every fixed frame update
     {
-        MovePlatform(); // Call the method to move the platform
+        if (isActivated) // Checks if the platform is activated
+        {
+            MovePlatform(); // Call the method to move the platform
+        }
+        else
+        {
+            ReturnPlatform(); // Call the method to return the platform to its original position
+        }   
+    }
+
+    private void MovePlatform() // Function to move the platform
+    {
+        transform.position = Vector3.MoveTowards(transform.position, nextPosition, platformSpeed * Time.deltaTime); // Moves the platform from its current position to the next position at the specified speed
+
+        if (transform.position == nextPosition) // Checks if the platform has reached the next position
+        {
+            pointCounter ++; // Move to the next target point
+
+            if (pointCounter < pointPaths.Length) // Checks if the pointCounter is within the bounds of the pointPaths array
+            {
+                nextPosition = pointPaths[pointCounter].position; // Update next target position    
+            }
+        }
+    }
+
+    private void ReturnPlatform() // Function to return the platform to its original position
+    {
+        transform.position = Vector3.MoveTowards(transform.position, pointPaths[0].position, platformSpeed * Time.deltaTime); // Moves the platform back to its original position
+        pointCounter = 0; // Reset the point counter to 0
     }
 
     private void OnCollisionEnter2D(Collision2D actor) // Triggered when a game object collides with the platform
@@ -41,18 +70,6 @@ public class MovingPlatform : MonoBehaviour
         if (actor.gameObject.CompareTag("Player")) // Only executes if the object colliding with the platform has the tag "Player"
         {
             actor.gameObject.transform.parent = characterParent.transform; // Makes the player a child of a character parent game object so it no longer moves with the platform
-        }
-    }
-
-    public void MovePlatform() // Function to move the platform
-    {
-        transform.position = Vector3.MoveTowards(transform.position, nextPosition, platformSpeed * Time.deltaTime); // Moves the platform from its current position to the next position at the specified speed
-
-        if (transform.position == nextPosition) // Checks if the platform has reached the next position
-        {
-            pointCounter = (pointCounter + 1) % pointPaths.Length; // Move to the next index, or loop back to 0 if at the end
-
-            nextPosition = pointPaths[pointCounter].position; // Update next target position
         }
     }
 

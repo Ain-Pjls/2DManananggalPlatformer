@@ -38,7 +38,12 @@ public class Player2 : MonoBehaviour
         Flip();
     }
 
-    void CharacterMovement() // 
+    void FixedUpdate() // Smoother Movement for Left and Right (in order to evenly distribute the milliseconds per frame)
+    {
+        player2.velocity = new Vector2(horizontal * speed, player2.velocity.y); // Moves the player left and right
+    }
+
+    void CharacterMovement() // Function for the character's movement 
     {
         horizontal = Input.GetAxisRaw("Horizontal"); // Get's the key inputs from the Input Manager (Alternative method for "GetKey" functions)
 
@@ -69,12 +74,7 @@ public class Player2 : MonoBehaviour
         }
     }
 
-    void FixedUpdate() // Smoother Movement for Left and Right (in order to evenly distribute the milliseconds per frame)
-    {
-        player2.velocity = new Vector2(horizontal * speed, player2.velocity.y);
-    }
-
-    private bool IsGrounded()
+    private bool IsGrounded() // Function to check if the player is on the ground
     {
         return Physics2D.OverlapCircle(groundCheck.position, 0.5f, groundLayer); // Returns true or false
     }
