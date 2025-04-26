@@ -15,8 +15,20 @@ public class CollectibleManager : MonoBehaviour
         else Destroy(gameObject);
     }
 
-    public void AddCoin() => coins++; // Currently stacks regardless of reset
-    public void AddGem() => gems++; // Currently stacks regardless of reset
-    public void AddKey(string keyID) => keys.Add(keyID);
+    public void AddCoin()
+    {
+        coins++;
+        Debug.Log($"Coins: {coins}");
+    }
+    public void AddGem()
+    {
+        gems++;
+        Debug.Log($"Gems: {gems}");
+    }
+    public void AddKey(string keyID)
+    {
+        keys.Add(keyID);
+        Debug.Log($"Got key: {keyID}");
+    }
     public bool HasKey(string keyID) => keys.Contains(keyID);
 }
