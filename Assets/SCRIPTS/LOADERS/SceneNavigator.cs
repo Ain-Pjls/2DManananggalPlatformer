@@ -9,7 +9,7 @@ public class SceneNavigator : MonoBehaviour
 {
     // ------------------------- VARIABLES -------------------------
     [Header("Class Reference")]
-    //public SaveManager saveManager; // This is referenced to the SaveManager class for accessing save data
+    public SaveManager saveManager; // This is referenced to the SaveManager class for accessing save data
 
     [Header("Panel Reference")]
     public GameObject activeScene; // The currently active UI panel or scene
@@ -37,24 +37,19 @@ public class SceneNavigator : MonoBehaviour
         SceneManager.LoadScene(sceneToLoad); // Loads the scene by its name
     }
 
-    public void BtnLoadSceneSpecific(string sceneName)
-    {
-        SceneManager.LoadScene(sceneName); // Loads the scene by its name
-    }
-
     // Checks if the player has a saved progress before starting
-    //public void BtnCheckStart()
-    //{
-    //    if (saveManager.levelAt > 0) // If there is a saved progress, show a warning prompt
-    //    {
-    //        ButtonShowFloatingPanel();
-    //    }
-    //    else // If no progress, start the game directly
-    //    {
-    //        BtnLoadSceneSpecific();
-    //        Debug.Log("Loading");
-    //    }
-    //}
+    public void BtnCheckStart()
+    {
+        if (saveManager.levelAt > 0) // If there is a saved progress, show a warning prompt
+        {
+            ButtonShowFloatingPanel();
+        }
+        else // If no progress, start the game directly
+        {
+            BtnLoadSceneSpecific();
+            Debug.Log("Loading");
+        }
+    }
 
     // Navigates to the next scene (UI or game scene)
     public void ButtonNextScene()
@@ -86,10 +81,10 @@ public class SceneNavigator : MonoBehaviour
     }
 
     // Loads the last saved level from the SaveManager
-    //public void BtnLoadLast()
-    //{
-    //    SceneManager.LoadScene("Level_" + saveManager.lastLevel);
-    //}
+    public void BtnLoadLast()
+    {
+        SceneManager.LoadScene("Level_" + saveManager.lastLevel);
+    }
 
     // Loads a level based on the button ID (e.g., "Level_1", "Level_2", etc.)
     public void BtnLoadLevel()
