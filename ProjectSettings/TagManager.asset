@@ -3,30 +3,22 @@
 --- !u!78 &1
 TagManager:
   serializedVersion: 2
-  tags:
-  - Item
+  tags: []
   layers:
   - Default
   - TransparentFX
   - Ignore Raycast
-  - Ground
+  - 
   - Water
   - UI
-  - STOPPER
-  - PLAYER
-  - BUTTON
-  - Wall
-<<<<<<< HEAD
-  - Props Foreground
-  - Props Midground
-  - Props Background
-  - ItemLayer
-=======
-  - WIND
   - 
   - 
   - 
->>>>>>> 0d1fe083e095a835483fd1dff02dfc5e5b46882b
+  - 
+  - 
+  - 
+  - 
+  - 
   - 
   - 
   - 
@@ -48,10 +40,4 @@ TagManager:
   m_SortingLayers:
   - name: Default
     uniqueID: 0
-    locked: 0
-  - name: Platforms
-    uniqueID: 1601415561
-    locked: 0
-  - name: Obstacles
-    uniqueID: 2599138829
     locked: 0
