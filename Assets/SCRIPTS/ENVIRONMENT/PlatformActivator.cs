@@ -23,7 +23,7 @@ public class PlatformActivator : MonoBehaviour
 
     private void OnCollisionStay2D(Collision2D actor) // Triggered when a game object collides with the platform
     {
-        if (actor.gameObject.CompareTag("Player")) // Only executes if the object colliding with the platform has the tag "Player"
+        if (actor.gameObject.CompareTag("Player") || actor.gameObject.CompareTag("Item")) // Only executes if the object colliding with the platform has the tag "Player"
         {
             activatingPlatformScript.isActivated = true; // Toggle the activation state of the platform
         }
@@ -31,7 +31,7 @@ public class PlatformActivator : MonoBehaviour
 
     private void OnCollisionExit2D(Collision2D actor) // Triggered when a game object collides with the platform
     {
-        if (actor.gameObject.CompareTag("Player")) // Only executes if the object colliding with the platform has the tag "Player"
+        if (actor.gameObject.CompareTag("Player") || actor.gameObject.CompareTag("Item")) // Only executes if the object colliding with the platform has the tag "Player"
         {
             activatingPlatformScript.isActivated = false; // Toggle the activation state of the platform
             StopAudio(); // Call the function to stop audio

@@ -4,32 +4,50 @@ using UnityEngine;
 
 public class CharacterMeetTrigger : MonoBehaviour
 {
-    public GameObject otherCharacter; // Assign the other character in Inspector
+    public GameObject upperHalf;
+    public GameObject lowerHalf;
+    public GameObject fusionManager; // Empty object with the Animator
     public float meetDistance = 1f;
     public bool missionComplete = false;
+    public GameObject gameOverScreen; // UI for game over/completion
+
+    private Animator fusionAnimator;
+
+    void Start()
+    {
+        fusionAnimator = fusionManager.GetComponent<Animator>();
+    }
 
     void Update()
     {
-        if (!missionComplete && otherCharacter != null)
+        if (!missionComplete && upperHalf != null && lowerHalf != null)
         {
-            float distance = Vector2.Distance(transform.position, otherCharacter.transform.position);
+            float distance = Vector2.Distance(upperHalf.transform.position, lowerHalf.transform.position);
 
             if (distance <= meetDistance)
             {
                 missionComplete = true;
                 Debug.Log("Mission Complete! Characters have met!");
-                // You can add other completion logic here
+
+                // Disable the characters' SpriteRenderers
+                upperHalf.GetComponent<SpriteRenderer>().enabled = false;
+                lowerHalf.GetComponent<SpriteRenderer>().enabled = false;
+
+                // Play Fusion Animation
+                fusionAnimator.SetTrigger("Fusion"); // Assuming "Fusion" trigger is set in the Animator
+
+                // Wait for the fusion animation to complete, then show Game Over screen
+                StartCoroutine(ShowGameOverScreen());
             }
         }
     }
 
-    void OnDrawGizmos()
+    private IEnumerator ShowGameOverScreen()
     {
-        if (otherCharacter != null)
-        {
-            Gizmos.color = missionComplete ? Color.green : Color.yellow;
-            Gizmos.DrawLine(transform.position, otherCharacter.transform.position);
-            Gizmos.DrawWireSphere(transform.position, meetDistance);
-        }
+        // Wait for a specific time (based on your animation length) before showing the screen
+        yield return new WaitForSeconds(3f); // Adjust based on your animation length
+
+        // Activate the game over screen (UI)
+        gameOverScreen.SetActive(true);
     }
 }
