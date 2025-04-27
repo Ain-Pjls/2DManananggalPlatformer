@@ -16,10 +16,17 @@ TagManager:
   - PLAYER
   - BUTTON
   - Wall
+<<<<<<< HEAD
   - Props Foreground
   - Props Midground
   - Props Background
   - ItemLayer
+=======
+  - WIND
+  - 
+  - 
+  - 
+>>>>>>> 0d1fe083e095a835483fd1dff02dfc5e5b46882b
   - 
   - 
   - 

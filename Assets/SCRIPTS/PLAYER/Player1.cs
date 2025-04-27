@@ -5,7 +5,7 @@ using UnityEngine; // Grants access to Unity's core features
 
 public class Player1 : MonoBehaviour
 {
-    [Header("Player's Rigidbody")]
+    [Header("Player's Components")]
     public Rigidbody2D player1; // Placeholder for your character object
     public Animator animator; // Placeholder for the character's animations
 
@@ -21,8 +21,10 @@ public class Player1 : MonoBehaviour
     public float horizontal; // Character's placeholder for left and right displacement 
     public float vertical; // Character's placeholder for up and down displacement 
 
-    [Header("Booleans")]
+    [Header("Animations")]
     public bool isWalking; // Character's placeholder to determine if animation should be executed to match the actions
+
+    [Header("States")]
     private bool isFacingRight = true; // For flipping the character based on which direction it's moving
 
     void Start() // Start is called before the first frame update
