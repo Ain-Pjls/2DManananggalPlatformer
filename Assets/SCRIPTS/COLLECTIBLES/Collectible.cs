@@ -22,7 +22,7 @@ public class Collectible : MonoBehaviour
                     CollectibleManager.Instance.AddGem();
                     break;
                 case CollectibleType.Key:
-                    CollectibleManager.Instance.AddKey(keyID); // Different key IDs open different gates 
+                    CollectibleManager.Instance.AddKey(keyID); // Different key IDs open different gates
                     break;
             }
             Destroy(gameObject); // Remove collectible from scene

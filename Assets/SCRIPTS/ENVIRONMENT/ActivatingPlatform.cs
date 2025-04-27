@@ -18,6 +18,9 @@ public class ActivatingPlatform : MonoBehaviour
     public int pointCounter = 0; // The counter that regulates the path of the platform between path points
     public bool isActivated = false; // A boolean to check if the platform is activated or not
 
+    [Header("AUDIO")]
+    public AudioSource[] audioSource; // Reference to the AudioSource component
+
     // ------------------------- METHODS -------------------------
     private void Start() // called once before the first frame update
     {
@@ -33,7 +36,25 @@ public class ActivatingPlatform : MonoBehaviour
         else
         {
             ReturnPlatform(); // Call the method to return the platform to its original position
-        }   
+        }
+    }
+
+    private void OnCollisionEnter2D(Collision2D actor) // Triggered when a game object collides with the platform
+    {
+        if (actor.gameObject.CompareTag("Player")) // Only executes if the object colliding with the platform has the tag "Player"
+        {
+            actor.gameObject.transform.parent = transform; // Makes the player a child of the platform so it moves with the platform
+            PlayAudio(); // Call the function to play audio
+        }
+    }
+
+    private void OnCollisionExit2D(Collision2D actor) // Triggered when a game object collides with the platform
+    {
+        if (actor.gameObject.CompareTag("Player")) // Only executes if the object colliding with the platform has the tag "Player"
+        {
+            actor.gameObject.transform.parent = characterParent.transform; // Makes the player a child of a character parent game object so it no longer moves with the platform
+            StopAudio(); // Call the function to stop audio
+        }
     }
 
     private void MovePlatform() // Function to move the platform
@@ -57,19 +78,26 @@ public class ActivatingPlatform : MonoBehaviour
         pointCounter = 0; // Reset the point counter to 0
     }
 
-    private void OnCollisionEnter2D(Collision2D actor) // Triggered when a game object collides with the platform
+    void PlayAudio() // Play audio files related
     {
-        if (actor.gameObject.CompareTag("Player")) // Only executes if the object colliding with the platform has the tag "Player"
+        if (audioSource != null)
         {
-            actor.gameObject.transform.parent = transform; // Makes the player a child of the platform so it moves with the platform
+            foreach (AudioSource audio in audioSource) // Loop through all audio sources
+            {
+                Debug.Log($"Playing {audio}"); // Debug message
+                audio.Play(); // Plays audio clip
+            }
         }
     }
 
-    private void OnCollisionExit2D(Collision2D actor) // Triggered when a game object collides with the platform
+    void StopAudio() // Play audio files related
     {
-        if (actor.gameObject.CompareTag("Player")) // Only executes if the object colliding with the platform has the tag "Player"
+        if (audioSource != null)
         {
-            actor.gameObject.transform.parent = characterParent.transform; // Makes the player a child of a character parent game object so it no longer moves with the platform
+            foreach (AudioSource audio in audioSource) // Loop through all audio sources
+            {
+                audio.Stop(); // Plays audio clip
+            }
         }
     }
 
