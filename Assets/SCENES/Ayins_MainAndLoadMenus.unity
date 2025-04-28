@@ -467,11 +467,11 @@ RectTransform:
   m_GameObject: {fileID: 235802990}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.8734774, y: 0.9982599, z: 0.9982599}
+  m_LocalScale: {x: 0.8734774, y: 0.99825984, z: 0.9982599}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 453013265}
-  m_Father: {fileID: 1350013551}
+  m_Father: {fileID: 438154027}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 1, y: 0}
   m_AnchorMax: {x: 1, y: 0}
@@ -588,7 +588,7 @@ MonoBehaviour:
   activeScene: {fileID: 1350013550}
   nextScene: {fileID: 1538430944}
   sceneToLoad: 
-  btnID: 0
+  btnID: 5
 --- !u!1 &270358277
 GameObject:
   m_ObjectHideFlags: 0
@@ -773,6 +773,7 @@ RectTransform:
   - {fileID: 2054484359}
   - {fileID: 1666857946}
   - {fileID: 645316561}
+  - {fileID: 235802991}
   m_Father: {fileID: 1350013551}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
@@ -1643,7 +1644,6 @@ GameObject:
   - component: {fileID: 688150868}
   - component: {fileID: 688150867}
   - component: {fileID: 688150870}
-  - component: {fileID: 688150871}
   m_Layer: 5
   m_Name: Button_Quit
   m_TagString: Untagged
@@ -1715,21 +1715,9 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 688150871}
-        m_TargetAssemblyTypeName: UnityEngine.AudioSource, UnityEngine
-        m_MethodName: Play
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
       - m_Target: {fileID: 688150870}
-        m_TargetAssemblyTypeName: MainMenu, Assembly-CSharp
-        m_MethodName: GameButtonQuit
+        m_TargetAssemblyTypeName: SceneNavigator, Assembly-CSharp
+        m_MethodName: BtnQuit
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -1786,105 +1774,14 @@ MonoBehaviour:
   m_GameObject: {fileID: 688150865}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 457fa7d6845926e44843dec7633b03da, type: 3}
+  m_Script: {fileID: 11500000, guid: d5ac04dc3851b9d45b081b5ec44bd4d9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!82 &688150871
-AudioSource:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 688150865}
-  m_Enabled: 1
-  serializedVersion: 4
-  OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 8300000, guid: 793260d1aee81594db396ecbfa4d07e2, type: 3}
-  m_PlayOnAwake: 0
-  m_Volume: 1
-  m_Pitch: 1
-  Loop: 0
-  Mute: 0
-  Spatialize: 0
-  SpatializePostEffects: 0
-  Priority: 128
-  DopplerLevel: 1
-  MinDistance: 1
-  MaxDistance: 500
-  Pan2D: 0
-  rolloffMode: 0
-  BypassEffects: 0
-  BypassListenerEffects: 0
-  BypassReverbZones: 0
-  rolloffCustomCurve:
-    serializedVersion: 2
-    m_Curve:
-    - serializedVersion: 3
-      time: 0
-      value: 1
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0.33333334
-      outWeight: 0.33333334
-    - serializedVersion: 3
-      time: 1
-      value: 0
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0.33333334
-      outWeight: 0.33333334
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-    m_RotationOrder: 4
-  panLevelCustomCurve:
-    serializedVersion: 2
-    m_Curve:
-    - serializedVersion: 3
-      time: 0
-      value: 0
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0.33333334
-      outWeight: 0.33333334
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-    m_RotationOrder: 4
-  spreadCustomCurve:
-    serializedVersion: 2
-    m_Curve:
-    - serializedVersion: 3
-      time: 0
-      value: 0
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0.33333334
-      outWeight: 0.33333334
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-    m_RotationOrder: 4
-  reverbZoneMixCustomCurve:
-    serializedVersion: 2
-    m_Curve:
-    - serializedVersion: 3
-      time: 0
-      value: 1
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0.33333334
-      outWeight: 0.33333334
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-    m_RotationOrder: 4
+  saveManager: {fileID: 0}
+  activeScene: {fileID: 0}
+  nextScene: {fileID: 0}
+  sceneToLoad: 
+  btnID: 0
 --- !u!1 &712620205
 GameObject:
   m_ObjectHideFlags: 0
@@ -2107,6 +2004,7 @@ GameObject:
   m_Component:
   - component: {fileID: 933669635}
   - component: {fileID: 933669636}
+  - component: {fileID: 933669637}
   m_Layer: 0
   m_Name: LevelManager
   m_TagString: Untagged
@@ -2150,6 +2048,19 @@ MonoBehaviour:
   - {fileID: 1666857945}
   - {fileID: 645316560}
   - {fileID: 235802990}
+--- !u!114 &933669637
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 933669634}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d2046ed16d17410479a294e4cf8b0105, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  levelAt: 0
 --- !u!1 &1003804153
 GameObject:
   m_ObjectHideFlags: 0
@@ -2521,7 +2432,6 @@ GameObject:
   - component: {fileID: 1079438941}
   - component: {fileID: 1079438940}
   - component: {fileID: 1079438943}
-  - component: {fileID: 1079438944}
   m_Layer: 5
   m_Name: Button_Load
   m_TagString: Untagged
@@ -2593,18 +2503,6 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1079438944}
-        m_TargetAssemblyTypeName: UnityEngine.AudioSource, UnityEngine
-        m_MethodName: Play
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
       - m_Target: {fileID: 1079438943}
         m_TargetAssemblyTypeName: SceneNavigator, Assembly-CSharp
         m_MethodName: ButtonNextScene
@@ -2672,102 +2570,6 @@ MonoBehaviour:
   nextScene: {fileID: 1350013550}
   sceneToLoad: 
   btnID: 0
---- !u!82 &1079438944
-AudioSource:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1079438938}
-  m_Enabled: 1
-  serializedVersion: 4
-  OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 8300000, guid: 793260d1aee81594db396ecbfa4d07e2, type: 3}
-  m_PlayOnAwake: 0
-  m_Volume: 1
-  m_Pitch: 1
-  Loop: 0
-  Mute: 0
-  Spatialize: 0
-  SpatializePostEffects: 0
-  Priority: 128
-  DopplerLevel: 1
-  MinDistance: 1
-  MaxDistance: 500
-  Pan2D: 0
-  rolloffMode: 0
-  BypassEffects: 0
-  BypassListenerEffects: 0
-  BypassReverbZones: 0
-  rolloffCustomCurve:
-    serializedVersion: 2
-    m_Curve:
-    - serializedVersion: 3
-      time: 0
-      value: 1
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0.33333334
-      outWeight: 0.33333334
-    - serializedVersion: 3
-      time: 1
-      value: 0
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0.33333334
-      outWeight: 0.33333334
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-    m_RotationOrder: 4
-  panLevelCustomCurve:
-    serializedVersion: 2
-    m_Curve:
-    - serializedVersion: 3
-      time: 0
-      value: 0
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0.33333334
-      outWeight: 0.33333334
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-    m_RotationOrder: 4
-  spreadCustomCurve:
-    serializedVersion: 2
-    m_Curve:
-    - serializedVersion: 3
-      time: 0
-      value: 0
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0.33333334
-      outWeight: 0.33333334
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-    m_RotationOrder: 4
-  reverbZoneMixCustomCurve:
-    serializedVersion: 2
-    m_Curve:
-    - serializedVersion: 3
-      time: 0
-      value: 1
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0.33333334
-      outWeight: 0.33333334
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-    m_RotationOrder: 4
 --- !u!1 &1079643499
 GameObject:
   m_ObjectHideFlags: 0
@@ -2994,7 +2796,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   saveManager: {fileID: 933669636}
-  activeScene: {fileID: 1940157933}
+  activeScene: {fileID: 1538430944}
   nextScene: {fileID: 717341502}
   sceneToLoad: Level_1
   btnID: 0
@@ -3051,7 +2853,7 @@ MonoBehaviour:
   m_ScaleFactor: 1
   m_ReferenceResolution: {x: 1920, y: 1080}
   m_ScreenMatchMode: 0
-  m_MatchWidthOrHeight: 1
+  m_MatchWidthOrHeight: 0.5
   m_PhysicalUnit: 3
   m_FallbackScreenDPI: 96
   m_DefaultSpriteDPI: 96
@@ -3092,8 +2894,8 @@ RectTransform:
   m_LocalScale: {x: 0, y: 0, z: 0}
   m_ConstrainProportionsScale: 0
   m_Children:
-  - {fileID: 1538430945}
   - {fileID: 1940157934}
+  - {fileID: 1538430945}
   - {fileID: 717341503}
   - {fileID: 1350013551}
   m_Father: {fileID: 0}
@@ -3293,7 +3095,6 @@ RectTransform:
   - {fileID: 597079462}
   - {fileID: 1869993401}
   - {fileID: 438154027}
-  - {fileID: 235802991}
   m_Father: {fileID: 1210024999}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
@@ -4328,7 +4129,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 1759063578}
         m_TargetAssemblyTypeName: SceneNavigator, Assembly-CSharp
-        m_MethodName: ButtonHideFloatingPanel
+        m_MethodName: ButtonNextScene
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -4390,7 +4191,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   saveManager: {fileID: 0}
   activeScene: {fileID: 717341502}
-  nextScene: {fileID: 1940157933}
+  nextScene: {fileID: 1538430944}
   sceneToLoad: 
   btnID: 0
 --- !u!1 &1869993400
@@ -4910,7 +4711,7 @@ AudioSource:
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 8300000, guid: 793260d1aee81594db396ecbfa4d07e2, type: 3}
-  m_PlayOnAwake: 1
+  m_PlayOnAwake: 0
   m_Volume: 1
   m_Pitch: 1
   Loop: 0
@@ -5301,7 +5102,7 @@ MonoBehaviour:
   saveManager: {fileID: 0}
   activeScene: {fileID: 0}
   nextScene: {fileID: 0}
-  sceneToLoad: MainMenuWithLoadMenu
+  sceneToLoad: Ayins_MainAndLoadMenus
   btnID: 0
 --- !u!1 &2054484358
 GameObject:

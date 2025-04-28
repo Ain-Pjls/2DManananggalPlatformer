@@ -8,7 +8,7 @@ public class SaveManager : MonoBehaviour
     // ------------------------- VARIABLES -------------------------
     
     [Header("Player Prefs Values")]
-    public int levelAt; // Stores the player's highest unlocked level
+    public int levelAt = 0; // Stores the player's highest unlocked level
     public int lastLevel; // Stores the player's last played level
 
     [Header("UI Reference")]

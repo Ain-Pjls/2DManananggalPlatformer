@@ -91,4 +91,9 @@ public class SceneNavigator : MonoBehaviour
     {
         SceneManager.LoadScene("Level_" + btnID);
     }
+
+    public void BtnQuit()
+    {
+        Application.Quit();
+    }
 }
