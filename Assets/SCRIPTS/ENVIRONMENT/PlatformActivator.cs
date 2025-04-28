@@ -1,6 +1,5 @@
 using System.Collections; // Grants access to collections and data structures like Arrays, Lists, etc.
 using System.Collections.Generic; // Grants access to generic collections like List<T>, Dictionary<TKey, TValue>, etc.
-using UnityEditor.U2D.Animation;
 using UnityEngine; // Grants access to Unity's core classes and functions, such as MonoBehaviour, GameObject, etc.
 
 public class PlatformActivator : MonoBehaviour

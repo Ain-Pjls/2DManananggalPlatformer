@@ -879,7 +879,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a332f2bb7b380d54d96641dde867440c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  sceneNavigatorScript: {fileID: 836560046}
+  sceneNavigatorScript: {fileID: 0}
 --- !u!1001 &184344624
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -4338,50 +4338,6 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 3273219686947539540, guid: 00fbaa3e09c4ece48a1fbed87aaf6ef2, type: 3}
   m_PrefabInstance: {fileID: 819058086}
   m_PrefabAsset: {fileID: 0}
---- !u!1 &836560044
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 836560045}
-  - component: {fileID: 836560046}
-  m_Layer: 0
-  m_Name: Level Manager
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 0
---- !u!4 &836560045
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 836560044}
-  serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 1820945621}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &836560046
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 836560044}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 46fcac9f6c75c37468230527fda56db3, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &886247777
 GameObject:
   m_ObjectHideFlags: 0
@@ -5864,6 +5820,51 @@ Transform:
   m_Children: []
   m_Father: {fileID: 1405755237}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1336099279
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1336099280}
+  - component: {fileID: 1336099281}
+  m_Layer: 0
+  m_Name: Game Manager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1336099280
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1336099279}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1820945621}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1336099281
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1336099279}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d2046ed16d17410479a294e4cf8b0105, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  levelAt: 1
 --- !u!1 &1346497454 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 8264032251723071647, guid: 193325a654791434f8d49f04f2478e8c, type: 3}
@@ -8600,7 +8601,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1820945621}
-  - component: {fileID: 1820945622}
   m_Layer: 0
   m_Name: MANAGER
   m_TagString: Untagged
@@ -8622,23 +8622,10 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 479822820}
-  - {fileID: 836560045}
   - {fileID: 7440196737063346581}
+  - {fileID: 1336099280}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1820945622
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1820945620}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d2046ed16d17410479a294e4cf8b0105, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  levelAt: 1
 --- !u!1001 &1834501121
 PrefabInstance:
   m_ObjectHideFlags: 0
