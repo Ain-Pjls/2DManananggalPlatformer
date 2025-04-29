@@ -7,15 +7,18 @@ public class CharacterMeetTrigger : MonoBehaviour
     public GameObject upperHalf;
     public GameObject lowerHalf;
     public GameObject fusionManager; // Empty object with the Animator
+    public AudioClip fusionSound;
     public float meetDistance = 1f;
     public bool missionComplete = false;
     public GameObject gameOverScreen; // UI for game over/completion
 
     private Animator fusionAnimator;
+    private AudioSource audioSource;
 
     void Start()
     {
         fusionAnimator = fusionManager.GetComponent<Animator>();
+        audioSource = fusionManager.GetComponent<AudioSource>();
     }
 
     void Update()
@@ -35,6 +38,12 @@ public class CharacterMeetTrigger : MonoBehaviour
 
                 // Play Fusion Animation
                 fusionAnimator.SetTrigger("Fusion"); // Assuming "Fusion" trigger is set in the Animator
+
+                // Play fusion sound effect
+                if (fusionSound != null)
+                {
+                    audioSource.PlayOneShot(fusionSound); // Play the sound once
+                }
 
                 // Wait for the fusion animation to complete, then show Game Over screen
                 StartCoroutine(ShowGameOverScreen());

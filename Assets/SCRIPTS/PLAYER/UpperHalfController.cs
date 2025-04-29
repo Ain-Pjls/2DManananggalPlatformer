@@ -68,7 +68,7 @@ public class UpperHalfController : MonoBehaviour
     }
 
     private void Update()
-    {
+    { 
         isGrounded = Physics2D.OverlapCircle(groundCheck.position, groundCheckRadius, groundLayer);
 
         isTouchingCeiling = Physics2D.OverlapCircle(ceilingCheck.position, groundCheckRadius, groundLayer);
@@ -76,7 +76,7 @@ public class UpperHalfController : MonoBehaviour
         // Reset double jump when grounded
         if (isGrounded && !wasGroundedLastFrame)
         {
-            hoverBaseY = transform.position.y - lastHoverY;
+            hoverBaseY = transform.position.y - lastHoverY; 
             lastHoverY = 0f;
             isJumping = false;
             canDoubleJump = true;  // Reset double jump when landing
@@ -86,12 +86,18 @@ public class UpperHalfController : MonoBehaviour
 
         if (!canControl)
         {
+            if (playingFootsteps)
+                StopFootstepSounds(); // Stop sound properly when control is disabled
+
             if (isGrounded)
-            {
-                rb.velocity = new Vector2(0, 0);
-            }
+                rb.velocity = Vector2.zero;
+
             return;
         }
+
+        // Start hover sound if not already playing
+        if (!playingFootsteps)
+            StartFootstepSounds();
 
         // Horizontal movement
         float move = Input.GetAxisRaw("Horizontal");
@@ -140,18 +146,6 @@ public class UpperHalfController : MonoBehaviour
             {
                 ReleaseItem();
             }
-        }
-
-        // Sound trigger
-        if (canControl)
-        {
-            if (!playingFootsteps)
-                StartFootstepSounds();
-        }
-        else
-        {
-            if (playingFootsteps)
-                StopFootstepSounds();
         }
     }
 
