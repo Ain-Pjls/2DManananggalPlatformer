@@ -143,14 +143,15 @@ public class UpperHalfController : MonoBehaviour
         }
 
         // Sound trigger
-        bool shouldPlayFootsteps = Mathf.Abs(rb.velocity.x) > 0.1f && isGrounded; //prevents from playing the audio again when changing walk direction
-        if (shouldPlayFootsteps && !playingFootsteps)
+        if (canControl)
         {
-            StartFootstepSounds();
+            if (!playingFootsteps)
+                StartFootstepSounds();
         }
-        else if (!shouldPlayFootsteps && playingFootsteps)
+        else
         {
-            StopFootstepSounds();
+            if (playingFootsteps)
+                StopFootstepSounds();
         }
     }
 
