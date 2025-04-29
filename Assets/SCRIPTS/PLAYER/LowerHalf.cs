@@ -4,19 +4,25 @@ using UnityEngine;
 
 public class LowerHalf : MonoBehaviour
 {
+    [Header("MOVEMENT")]
     public bool canControl = true;
-
     public float moveSpeed = 5f;
     public float jumpForce = 10f;
 
+    [Header("GROUNDCHECK")]
     public Transform groundCheck;
     public LayerMask groundLayer;
     public float groundCheckRadius = 0.1f;
 
+    //ANIMATION
     private Rigidbody2D rb;
     private Animator animator;
     private bool isGrounded;
     private bool isFacingRight = true;
+
+    //AUDIO
+    private bool playingFootsteps = false;
+    public float footstepSpeed = 1f; 
 
     private void Start()
     {
@@ -26,7 +32,11 @@ public class LowerHalf : MonoBehaviour
 
     private void Update()
     {
-        if (!canControl) return;
+        if (!canControl)
+        {
+            stopFootsteps();
+            return;
+        }
 
         isGrounded = Physics2D.OverlapCircle(groundCheck.position, groundCheckRadius, groundLayer);
 
@@ -45,16 +55,44 @@ public class LowerHalf : MonoBehaviour
         {
             rb.velocity = new Vector2(rb.velocity.x, jumpForce);
         }
+
+        // Start Footsteps
+        if(Mathf.Abs(rb.velocity.x) > 0.1f && isGrounded && !playingFootsteps)
+        {
+            startFootsteps();
+        }
+        else if (Mathf.Abs(rb.velocity.x) <= 0.1f || !isGrounded)
+        {
+            stopFootsteps();
+        }
+    }
+
+    void startFootsteps()
+    {
+        playingFootsteps = true;
+        InvokeRepeating(nameof(playFootsteps), 0f, footstepSpeed);
+    }
+
+    void stopFootsteps()
+    {
+        playingFootsteps = false;
+        CancelInvoke(nameof(playFootsteps));
+    }
+
+    void playFootsteps()
+    {
+        Debug.Log("Playing Footstep Sound");
+        SoundEffectManager.Play("Footsteps");
     }
      
-        private void FlipSprite(float moveInput)
+    private void FlipSprite(float moveInput)
+    {
+        if ((isFacingRight && moveInput < 0f) || (!isFacingRight && moveInput > 0f))
         {
-            if ((isFacingRight && moveInput < 0f) || (!isFacingRight && moveInput > 0f))
-            {
-                isFacingRight = !isFacingRight;
-                Vector3 ls = transform.localScale;
-                ls.x *= -1f;
-                transform.localScale = ls;
-            }
+            isFacingRight = !isFacingRight;
+            Vector3 ls = transform.localScale;
+            ls.x *= -1f;
+            transform.localScale = ls;
         }
+    }
 }

@@ -24,6 +24,10 @@ public class UpperHalfController : MonoBehaviour
     public float grabRange = 1f;                // How close you have to be
     public LayerMask itemLayer;                 // Layer for grabbable items
 
+    [Header("Sounds")]
+    public float footstepInterval = 1f;
+    private bool playingFootsteps = false;
+
     [Header("Ground Detection")]
     public Transform groundCheck;
     public float groundCheckRadius = 0.1f;
@@ -35,8 +39,6 @@ public class UpperHalfController : MonoBehaviour
     
     [Header("Control Toggle")]
     public bool canControl = true;
-
-     
 
     //private var (Note: Arrange later)
     private Rigidbody2D rb;
@@ -112,6 +114,7 @@ public class UpperHalfController : MonoBehaviour
                 lastJumpTime = Time.time;
                 isJumping = true;
                 jumpStartY = transform.position.y;
+                SoundEffectManager.Play("Jump");
                 //animator.SetBool("isJumping", true);
             }
             else if (canDoubleJump && !isGrounded)
@@ -121,6 +124,7 @@ public class UpperHalfController : MonoBehaviour
                 canDoubleJump = false;  // Used up double jump
                 isJumping = true;
                 jumpStartY = transform.position.y;  // Reset jump height measurement
+                SoundEffectManager.Play("Jump");
                 //animator.SetBool("isJumping", true);
             }
         }
@@ -136,6 +140,17 @@ public class UpperHalfController : MonoBehaviour
             {
                 ReleaseItem();
             }
+        }
+
+        // Sound trigger
+        bool shouldPlayFootsteps = Mathf.Abs(rb.velocity.x) > 0.1f && isGrounded; //prevents from playing the audio again when changing walk direction
+        if (shouldPlayFootsteps && !playingFootsteps)
+        {
+            StartFootstepSounds();
+        }
+        else if (!shouldPlayFootsteps && playingFootsteps)
+        {
+            StopFootstepSounds();
         }
     }
 
@@ -231,4 +246,22 @@ public class UpperHalfController : MonoBehaviour
             Gizmos.DrawWireSphere(groundCheck.position, groundCheckRadius);
         }
     }
+
+    void StartFootstepSounds()
+    {
+        playingFootsteps = true;
+        InvokeRepeating(nameof(PlayFootstepSound), 0f, footstepInterval);
+    }
+
+    void StopFootstepSounds()
+    {
+        playingFootsteps = false;
+        CancelInvoke(nameof(PlayFootstepSound));
+    }
+
+    void PlayFootstepSound()
+    {
+        SoundEffectManager.Play("Hover");
+    }
+
 }
