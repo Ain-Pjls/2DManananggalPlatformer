@@ -20560,6 +20560,10 @@ PrefabInstance:
       propertyPath: upperHalf
       value: 
       objectReference: {fileID: 1977310654133423121}
+    - target: {fileID: 7018821746625116099, guid: d4fb9a288a3e8f2489e6244e7182bce6, type: 3}
+      propertyPath: levelAt
+      value: 2
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
