@@ -17,4 +17,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/BoredBrosStudios/2DManananggalPlatformer/SCENES/Level_3.unity
     guid: 7093c30256b3a394a8aa3ce4029861c3
+  - enabled: 1
+    path: Assets/BoredBrosStudios/2DManananggalPlatformer/SCENES/Level_4.unity
+    guid: 05f72995dfc655446a3d41678dab33c7
   m_configObjects: {}
