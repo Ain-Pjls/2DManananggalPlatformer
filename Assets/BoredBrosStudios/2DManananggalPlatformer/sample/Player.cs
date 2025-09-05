@@ -19,6 +19,8 @@ public class Player : MonoBehaviour
     public Transform groundCheck; // For Jump
     public LayerMask groundLayer; // For Jump
 
+    public PlayerType PlayerType { get; internal set; }
+
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
