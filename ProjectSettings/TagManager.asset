@@ -3,24 +3,27 @@
 --- !u!78 &1
 TagManager:
   serializedVersion: 2
-  tags: []
+  tags:
+  - Item
+  - Collectibles
+  - Ground
   layers:
   - Default
   - TransparentFX
   - Ignore Raycast
-  - 
+  - Ground
   - Water
   - UI
-  - 
-  - 
-  - 
-  - 
-  - 
-  - 
-  - 
-  - 
-  - 
-  - 
+  - STOPPER
+  - PLAYER
+  - BUTTON
+  - Wall
+  - Props Foreground
+  - Props Midground
+  - Props Background
+  - ItemLayer
+  - Lava
+  - Water
   - 
   - 
   - 
@@ -38,6 +41,18 @@ TagManager:
   - 
   - 
   m_SortingLayers:
+  - name: Background
+    uniqueID: 2220593505
+    locked: 0
   - name: Default
     uniqueID: 0
+    locked: 0
+  - name: Platforms
+    uniqueID: 1601415561
+    locked: 0
+  - name: Obstacles
+    uniqueID: 2599138829
+    locked: 0
+  - name: Characters
+    uniqueID: 1587062983
     locked: 0
