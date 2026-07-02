@@ -6,9 +6,9 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
-    path: Assets/Scenes/JOSEP FOLDER/PE_Level_1.unity
+    path: Assets/OTHERS/JOSEP FOLDER/PE_Level_1.unity
     guid: 74484944d40905b46af634765c17b6de
   - enabled: 1
-    path: Assets/Scenes/JOSEP FOLDER/PE_Level_2.unity
+    path: Assets/OTHERS/JOSEP FOLDER/PE_Level_2.unity
     guid: 6d4af55abbf86a24d894c43b4d502676
   m_configObjects: {}
